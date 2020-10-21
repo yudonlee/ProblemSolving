@@ -1,0 +1,78 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int length(int src){
+	if(src >=1000000)
+		return -1;
+	else if(src >=100000)
+		return 6;
+	else if(src >=10000)
+		return 5;
+	else if(src >=1000)
+		return 4;
+	else if(src >=100)
+		return 3;
+	else if(src >=10)
+		return 2;
+	else if(src >=0)
+		return 1;
+	else
+		return -1;
+}
+
+int max_winning(int source,int digits,int exchange_number);
+void swap(pair<int, int> &x,pair<int, int> &y){
+	int tmp;
+	tmp = x.second;
+	x.second = y.second;
+	y.second = tmp;
+} 
+/*bool cmp(const pair<int, int> &x, const pair<int, int> &y){
+	return x.first < y.first;
+}*/
+int main(){
+	int number;
+	cin >> number;
+	int src,dest,exchange_num;
+	for(int i=1; i<=number;i++){
+		cin >> src >> exchange_num;
+		int digits = length(src);
+		if(digits == -1)
+			i--;
+		else{
+			int result = max_winning(src,exchange_number);
+			cout << "#"<< i<<" "<<result<<endl;
+		}
+	}
+}
+int max_winning(int source,int digits,int exchange_number){
+	vector<pair<int,int>> list_of_nums;
+	list_of_nums.push_back(0,0);
+	int count = exchange_number;
+	int _digits = digits;
+	int _source= source;
+	if(_digits == 1)
+		return _source;
+	for(int i=1; i<=digits){
+		int x = _digits %10;
+		_digits /= 10;
+		list_of_nums.push_back(make_pair(x,i));
+	}
+	sort(list_of_nums.begin(),list_of_nums.end());
+	for(int i =1;i<count;){	
+		int inserted_digit = digits-i;
+		if(inserted_digit == 1)
+			break;
+		if(list_of_nums[inserted_digit].second != inserted_digit){
+			int index = 1;
+			while(list_of_nums[index].second != inserted_digit)
+				index++;
+			swap(list_of_nums[inserted_digit].second,inserted_digit);
+			i++;
+		}
+	}
+	for(int i=1;i<=digits;i++)
+		cout<<list_of_nums[i].first<<"     "<<list_of_nums[i].second<<endl;
+	return -1;
+}
