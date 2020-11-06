@@ -1,0 +1,40 @@
+minimum_road.cpp: In function ‘int minimum_road(int)’:
+minimum_road.cpp:58:32: error: invalid types ‘<unresolved overloaded function type>[int]’ for array subscript
+   58 |            if(move[visit.xpos-1][visit.ypos] == 0 || move[visit.xpos-1][visit.ypos] > costs[visit.xpos-1][visit.ypos] + visit.expense){
+      |                                ^
+minimum_road.cpp:58:71: error: invalid types ‘<unresolved overloaded function type>[int]’ for array subscript
+   58 |            if(move[visit.xpos-1][visit.ypos] == 0 || move[visit.xpos-1][visit.ypos] > costs[visit.xpos-1][visit.ypos] + visit.expense){
+      |                                                                       ^
+minimum_road.cpp:59:33: error: invalid types ‘<unresolved overloaded function type>[int]’ for array subscript
+   59 |                move[visit.xpos-1][visit.ypos] = costs[visit.xpos-1][visit.ypos] + visit.expense;
+      |                                 ^
+minimum_road.cpp:64:32: error: invalid types ‘<unresolved overloaded function type>[int]’ for array subscript
+   64 |            if(move[visit.xpos+1][visit.ypos] == 0 || move[visit.xpos+1][visit.ypos] > costs[visit.xpos+1][visit.ypos] + visit.expense){
+      |                                ^
+minimum_road.cpp:64:71: error: invalid types ‘<unresolved overloaded function type>[int]’ for array subscript
+   64 |            if(move[visit.xpos+1][visit.ypos] == 0 || move[visit.xpos+1][visit.ypos] > costs[visit.xpos+1][visit.ypos] + visit.expense){
+      |                                                                       ^
+minimum_road.cpp:65:33: error: invalid types ‘<unresolved overloaded function type>[int]’ for array subscript
+   65 |                move[visit.xpos+1][visit.ypos] = costs[visit.xpos+1][visit.ypos] + visit.expense;
+      |                                 ^
+minimum_road.cpp:70:30: error: invalid types ‘<unresolved overloaded function type>[int]’ for array subscript
+   70 |            if(move[visit.xpos][visit.ypos-1] == 0 || move[visit.xpos][visit.ypos-1] > costs[visit.xpos][visit.ypos-1] + visit.expense){
+      |                              ^
+minimum_road.cpp:70:69: error: invalid types ‘<unresolved overloaded function type>[int]’ for array subscript
+   70 |            if(move[visit.xpos][visit.ypos-1] == 0 || move[visit.xpos][visit.ypos-1] > costs[visit.xpos][visit.ypos-1] + visit.expense){
+      |                                                                     ^
+minimum_road.cpp:71:31: error: invalid types ‘<unresolved overloaded function type>[int]’ for array subscript
+   71 |                move[visit.xpos][visit.ypos-1] = costs[visit.xpos][visit.ypos-1] + visit.expense;
+      |                               ^
+minimum_road.cpp:76:30: error: invalid types ‘<unresolved overloaded function type>[int]’ for array subscript
+   76 |            if(move[visit.xpos][visit.ypos+1] == 0 || move[visit.xpos][visit.ypos+1] > costs[visit.xpos][visit.ypos+1] + visit.expense){
+      |                              ^
+minimum_road.cpp:76:69: error: invalid types ‘<unresolved overloaded function type>[int]’ for array subscript
+   76 |            if(move[visit.xpos][visit.ypos+1] == 0 || move[visit.xpos][visit.ypos+1] > costs[visit.xpos][visit.ypos+1] + visit.expense){
+      |                                                                     ^
+minimum_road.cpp:77:31: error: invalid types ‘<unresolved overloaded function type>[int]’ for array subscript
+   77 |                move[visit.xpos][visit.ypos+1] = costs[visit.xpos][visit.ypos+1] + visit.expense;
+      |                               ^
+minimum_road.cpp:82:23: error: invalid types ‘<unresolved overloaded function type>[int]’ for array subscript
+   82 |     return move[size-1][size-1];
+      |                       ^
