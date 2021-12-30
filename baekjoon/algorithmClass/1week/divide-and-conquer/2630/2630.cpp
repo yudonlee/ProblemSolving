@@ -5,11 +5,20 @@ bool A[128][128];
 bool isEqual(int row, int col, int N) {
   int next = N / 2;
   int root = A[row][col];
+  for(int i = 0; i < next; i++) {
+    for(int j = 0; j < next; j++) {
+      if(root != A[row + i][col + j]) return false;
+      if(root != A[row + next + i][col + j]) return false;
+      if(root != A[row + i][col + next + j]) return false;
+      if(root != A[row + next + i][col + next + j]) return false;
+    }
+  }
+  /*
   for(int i = 0; i < N; i++){
     for(int j = 0; j < N; j++){
       if(root != A[row + i][col + j]) return false;
     }
-  }
+  }*/
   return true;
 
 }
