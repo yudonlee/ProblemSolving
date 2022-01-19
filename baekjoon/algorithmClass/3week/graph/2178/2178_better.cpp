@@ -48,5 +48,6 @@ int main(){
 
   bfs(1, 1);
   cout << visit[N][M] << "\n";
+
   return 0;
 }
