@@ -79,7 +79,7 @@ int main(int argc, char* argv[]){
 
   }
 
-  if(successFlag) cout << "Success!\n";
+  if(fileExitFlag && successFlag) cout << "Success!\n";
   return 0;
 
 }
