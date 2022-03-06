@@ -1,6 +1,7 @@
 /*
- 해당 코드는, 노드의 재방문을 막으면서도, 해당 노드까지 가는 무수히 많은 간선들이 존재하고, 해당 노드에서 도착지점까지 갔을떄 최솟값을 가지는 경우의 예외처리를 해주었다.
- 일단 노드 재방문시, continue를 통해서 다시 while loop의 condition check로 돌아간다. 그전에, 만약 해당 노드까지 온 weight가 동일하다면 이들의 edgees list를 별도로 저장한다. 그리고 만약 해당 노드가 최소거리를 갖는 road에서의 node라면 별도로 저장한 edges를 가져와서 disable 시켜주는것이다. 
+ 해당 코드는 메모리초과 이슈가 발생한다.
+ input_2.txt의 예시와 같이, 특정 노드까지 최솟값을 갖는 여러개의 길이 존재하고 해당 노드로부터 도착지점까지 한방향의 길만 가진다고 가정해보자.
+ 이것이 무수하게 커질때, 우린 불필요한 연산을 계속해서 하게 된다. 따라서 특정 노드에 집결한 여러가지 간선들이, 특정 노드에서 도착지점까지 가는 경우, 반복된 노드 방문을 피하여 간선을 저장해줘야한다. 
  */
 #include <iostream>
 #include <vector>
@@ -20,8 +21,7 @@ int N, M;
 void CheckPath(vector<vector<pi>> vt) {
 	memset(dist, 0, sizeof(dist));
 	priority_queue<plivt, vector<plivt>, greater<plivt>> pq;
-	vector<vector<pi>> duplicate_vt(501, vector<pi>(0));	
-
+	
 	pq.push({{0, start_node}, {}});
 	while(!pq.empty()) {
 		auto t = pq.top();
@@ -31,25 +31,19 @@ void CheckPath(vector<vector<pi>> vt) {
 		int current_node = t.first.second;
 		vector<pi> p = t.second;
 		
-		if(dist[last_node] && dist[last_node] < accumulated) break;
-		
 		if(!dist[current_node]) dist[current_node] = accumulated;
-		else if(current_node != last_node) {
-			if(dist[current_node] == accumulated) {
-				for(auto itr: p) duplicate_vt[current_node].push_back(itr);
-			}
-			continue;	
-		}
+    else if(dist[current_node] < accumulated) continue;
+		
+
 		if(current_node == last_node) {
 			if(dist[current_node] == accumulated) {
 				for(auto node: p) {
-					for(auto dup: duplicate_vt[node.first]) {
-						visit[dup.first][dup.second] = false;
-					}
 					visit[node.first][node.second] = false;
 				}
 			} else break;
 		}
+		
+		if(!dist[last_node] && dist[last_node] < accumulated) break;
 		
 		for(auto it: vt[current_node]) {
 			long long expense = it.first;
@@ -76,8 +70,8 @@ long long Dijkstra(vector<vector<pi>> vt) {
 		int current_node = t.second;
 		
 		if(dist[current_node] == -1) dist[current_node] = accumulated;
-		else continue;
-		if(dist[last_node] != -1) break;
+		else continue;	
+		if(dist[last_node] != -1) break;	
 		for(auto v: vt[current_node]) {
 			long long expense = v.first;
 			int next_node = v.second;
@@ -89,6 +83,7 @@ long long Dijkstra(vector<vector<pi>> vt) {
 	if(dist[last_node] == INF) return -1;
 	return dist[last_node];
 }
+
 int main(){
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
@@ -110,7 +105,4 @@ int main(){
 		cout << result << "\n";	
 	}
 }
-
-
-
 
