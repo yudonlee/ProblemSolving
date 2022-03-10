@@ -1,5 +1,6 @@
 *.out
 test.*
 test*
+judger
 6549/
 .DS_Store
