@@ -16,18 +16,7 @@ void Dijkstra(){
 	memset(dist, -1, sizeof(dist));
 	memset(dist_index, 0, sizeof(dist_index));
 	priority_queue<pli, vector<pli>, greater<pli>> pq;
-	pq.push({0, 1});
-	
-	while(!pq.empty()){
-		auto t = pq.top();
-		pq.pop();
-		long long accumulated = t.first;
-		int current_node = t.second;
-		//이 부분을 dist[][] update 하는 line 밑에 둔다면, segment fault가 발생할수 있기 때문에 주의해야한다.
-		if(dist_index[current_node] > K) continue;
-		
-		dist[current_node][dist_index[current_node]++] = accumulated;
-		
+	pq.push({0, 1});6
 		for(auto v: vt[current_node]) {
 			long long expense = v.first;
 			int next_node = v.second;
